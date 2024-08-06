@@ -1,7 +1,7 @@
-<template lang="">
+<!-- <template lang="">
   <div class="p-2 sm:ml-64">
     <div class="p-2 mt-12">
-      <nav class="flex mb-3" aria-label="Breadcrumb">
+      <nav class="flex pb-4 py-2" aria-label="Breadcrumb">
         <ol
           class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse text-gray-700 from-blue-500 to-blue-700"
         >
@@ -27,286 +27,54 @@
         </ol>
       </nav>
       <div class="grid grid-cols-3 gap-4 mb-4">
-        <div
-          class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-      </div>
-      <div
-        class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4 mb-4">
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-      </div>
-      <div
-        class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800"
-      >
-        <p class="text-2xl text-gray-400 dark:text-gray-500">
-          <svg
-            class="w-3.5 h-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"
-        >
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg
-              class="w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
-          </p>
-        </div>
+        <div class="p-4 rounded-lg bg-gradient-to-tr from-pink-300 to-blue-300 shadow-lg">
+          <div>
+            <h1 class="text-xl font-semibold text-gray-800 dark:text-gray-800">Total Category</h1>
+            <p class="text-2xl font-bold py-2 text-dark-800 dark:text-dark-800">12</p>
+          </div>
+        </div>        
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup></script> -->
+
+<template>
+  <div>
+    <p v-if="message">Message: {{ message }}</p>
+  </div>
+</template>
+
+<script>
+import { ref, onMounted, watch } from 'vue';
+
+export default {
+  setup() {
+    const message = ref(null);
+
+    onMounted(() => {
+      if (window.Echo) {
+        window.Echo.channel('brand-notifications')
+          .listen('.BrandEmailSent', (e) => {
+            console.log('BrandEmailSent event received:', e);
+            message.value = e.message;
+          });
+      } else {
+        console.error('Laravel Echo is not initialized');
+      }
+    });
+
+    watch(message, (newValue) => {
+      if (newValue) {
+        console.log('Message updated:', newValue);
+      }
+    });
+
+    return {
+      message
+    };
+  }
+};
+</script>
+

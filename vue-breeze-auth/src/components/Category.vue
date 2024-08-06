@@ -2,28 +2,56 @@
   <!-- Start block -->
   <div class="p-2 sm:ml-64">
     <div class="p-2 mt-12">
-      <div
-        v-if="categoryStore.editSuccess"
-        class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
-        role="alert"
-      >
-        <span class="font-medium">Edited</span> Category Edited Successfully.
-      </div>
-      <div
-        v-if="categoryStore.addSuccess"
-        class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-        role="alert"
-      >
-        <span class="font-medium">Success! </span> New Category Added
-        Successfully.
-      </div>
-      <div
-        v-if="showDeleteAlert"
-        class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-        role="alert"
-      >
-        <span class="font-medium">Deleted!</span> Category Deleted Successfully.
-      </div>
+      <nav class="flex pb-4 py-2" aria-label="Breadcrumb">
+        <ol
+          class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
+        >
+          <li class="inline-flex items-center">
+            <router-link
+              :to="{ name: 'Home' }"
+              class="inline-flex items-center text-sm font-medium text-dark-700 hover:text-blue-600 dark:text-dark-400 dark:hover:text-blue"
+            >
+              <svg
+                class="w-3 h-3 me-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+                />
+              </svg>
+              Dashboard
+            </router-link>
+          </li>
+
+          <li aria-current="page">
+            <div class="flex items-center">
+              <svg
+                class="rtl:rotate-180 w-3 h-3 text-gray-500 mx-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 9 4-4-4-4"
+                />
+              </svg>
+              <span
+                class="ms-1 text-sm font-medium text-blue-600 md:ms-2 dark:text-blue-600"
+                >Categories Listing</span
+              >
+            </div>
+          </li>
+        </ol>
+      </nav>
+
       <section>
         <!-- Start coding here -->
         <div
@@ -33,35 +61,34 @@
             class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4"
           >
             <div class="w-full md:w-1/2">
-              <form class="flex items-center">
-                <label for="simple-search" class="sr-only">Search</label>
-                <div class="relative w-full">
-                  <div
-                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              <label for="simple-search" class="sr-only">Search</label>
+              <div class="relative w-full">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                      fill="currentColor"
-                      viewbox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    id="simple-search"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Search"
-                    required=""
-                  />
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                 </div>
-              </form>
+                <input
+                  type="text"
+                  id="simple-search"
+                  v-model="searchQuery"
+                  @input="categoryStore.handleSearch(searchQuery)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="Search"
+                />
+              </div>
             </div>
             <div
               class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
@@ -74,113 +101,136 @@
                 Add Category
               </button>
               <div class="flex items-center space-x-3 w-full md:w-auto">
-                <button
-                  id="actionsDropdownButton"
-                  data-dropdown-toggle="actionsDropdown"
-                  class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                  type="button"
-                >
-                  <svg
-                    class="-ml-1 mr-1.5 w-5 h-5"
-                    fill="currentColor"
-                    viewbox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
+                <div class="relative">
+                  <button
+                    @click="toggleActionVisibility"
+                    id="actionsDropdownButton"
+                    data-dropdown-toggle="actionsDropdown"
+                    class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    type="button"
                   >
-                    <path
-                      clip-rule="evenodd"
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    />
-                  </svg>
-                  Actions
-                </button>
-                <div
-                  id="actionsDropdown"
-                  class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                >
-                  <div class="py-1">
-                    <a
-                      href="#"
-                      class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >Delete all</a
+                    <svg
+                      class="-ml-1 mr-1.5 w-5 h-5"
+                      fill="currentColor"
+                      viewbox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
                     >
+                      <path
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      />
+                    </svg>
+                    Actions
+                  </button>
+                  <div
+                    :class="{ hidden: !isActionVisible }"
+                    id="actionsDropdown"
+                    class="z-10 w-full absolute bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                  >
+                    <div class="py-1">
+                      <a
+                        @click="openMultipleDeleteModal"
+                        href="#"
+                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        >Delete all</a
+                      >
+                    </div>
                   </div>
                 </div>
-                <button
-                  id="filterDropdownButton"
-                  data-dropdown-toggle="filterDropdown"
-                  class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                  type="button"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    class="h-4 w-4 mr-2 text-gray-400"
-                    viewbox="0 0 20 20"
-                    fill="currentColor"
+
+                <div class="relative">
+                  <button
+                    @click="toggleVisibility"
+                    id="filterDropdownButton"
+                    data-dropdown-toggle="filterDropdown"
+                    class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    type="button"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  Filter
-                  <svg
-                    class="-mr-1 ml-1.5 w-5 h-5"
-                    fill="currentColor"
-                    viewbox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    />
-                  </svg>
-                </button>
-                <div
-                  id="filterDropdown"
-                  class="z-10 hidden w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
-                >
-                  <h6
-                    class="mb-3 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Status
-                  </h6>
-                  <ul
-                    class="space-y-2 text-sm"
-                    aria-labelledby="filterDropdownButton"
-                  >
-                    <li class="flex items-center">
-                      <input
-                        id="apple"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      class="h-4 w-4 mr-2 text-gray-400"
+                      viewbox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                        clip-rule="evenodd"
                       />
-                      <label
-                        for="apple"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                        >Active</label
-                      >
-                    </li>
-                    <li class="flex items-center">
-                      <input
-                        id="fitbit"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    </svg>
+                    Filter
+                    <svg
+                      class="-mr-1 ml-1.5 w-5 h-5"
+                      fill="currentColor"
+                      viewbox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                       />
-                      <label
-                        for="fitbit"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                        >Inactive</label
-                      >
-                    </li>
-                  </ul>
+                    </svg>
+                  </button>
+                  <div
+                    :class="{ hidden: !isVisible }"
+                    id="filterDropdown"
+                    class="z-10 w-full p-3 absolute bg-white rounded-lg shadow dark:bg-gray-700"
+                  >
+                    <h6
+                      class="mb-3 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Status
+                    </h6>
+                    <ul
+                      class="space-y-2 text-sm"
+                      aria-labelledby="filterDropdownButton"
+                    >
+                      <li class="flex items-center">
+                        <input
+                          type="checkbox"
+                          v-model="activeChecked"
+                          @click="handleCheckboxClick(1)"
+                          class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                        />
+                        <label
+                          for="apple"
+                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                          >Active</label
+                        >
+                      </li>
+                      <li class="flex items-center">
+                        <input
+                          type="checkbox"
+                          v-model="inactiveChecked"
+                          @click="handleCheckboxClick(0)"
+                          class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                        />
+                        <label
+                          for="fitbit"
+                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                          >Inactive</label
+                        >
+                      </li>
+                      <li class="flex items-center">
+                        <input
+                          type="checkbox"
+                          v-model="all"
+                          @click="handleCheckboxClick(3)"
+                          class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                        />
+                        <label
+                          for="fitbit"
+                          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                          >All</label
+                        >
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -219,17 +269,11 @@
               >
                 <tr>
                   <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                      <input
-                        id="checkbox-all"
-                        type="checkbox"
-                        class="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      />
-                    </div>
                   </th>
                   <th scope="col" class="px-4 py-4">#SL</th>
                   <th scope="col" class="px-4 py-3">Category Name</th>
                   <th scope="col" class="px-4 py-3">Status</th>
+                  <th scope="col" class="px-4 py-3">Change Status</th>
                   <th scope="col" class="px-4 py-3">Created AT</th>
                   <th scope="col" class="px-4 py-3">
                     <span class="sr-only">Actions</span>
@@ -246,14 +290,17 @@
                   <td class="p-4 w-4">
                     <div class="flex items-center">
                       <input
-                        id="checkbox-table-search-1"
+                        :id="'checkbox-' + category.id"
                         type="checkbox"
-                        onclick="event.stopPropagation()"
+                        :value="category.id"
+                        v-model="selectedCategories"
                         class="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                       />
                     </div>
                   </td>
-                  <td class="px-4 py-3">{{ index + 1 }}</td>
+                  <td class="px-4 py-3">
+                    {{ (categoryStore.currentPage - 1) * 10 + index + 1 }}
+                  </td>
                   <th
                     scope="row"
                     class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -269,10 +316,62 @@
                       {{ getStatusText(category.status) }}
                     </span>
                   </td>
+                  <td>
+                    <button
+                      @click="status(index)"
+                      class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                      type="button"
+                    >
+                      Change status
+                      <svg
+                        class="w-2.5 h-2.5 ms-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 10 6"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 4 4 4-4"
+                        />
+                      </svg>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div
+                      v-show="statusIndex === index"
+                      class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute"
+                    >
+                      <ul
+                        class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdownDefaultButton"
+                      >
+                        <li>
+                          <div
+                            @click="updateStatus(category.id, 1)"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                          >
+                            Active
+                          </div>
+                        </li>
+                        <li>
+                          <div
+                            @click="updateStatus(category.id, 0)"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                          >
+                            Inactive
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
                   <td class="px-4 py-3">
                     {{ formatDate(category.created_at) }}
                   </td>
-                  <td class="px-4 py-3 items-center">
+                  <td class="px-10 py-3 items-center">
                     <button
                       @click="openToggle(index)"
                       class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
@@ -292,7 +391,7 @@
                     </button>
                     <div
                       v-show="activeIndex === index"
-                      class="z-10 fixed bg-white rounded divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                      class="z-10 absolute bg-white rounded divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                     >
                       <ul class="py-1 text-sm">
                         <li>
@@ -382,22 +481,37 @@
           </div>
 
           <nav
-            class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
             aria-label="Table navigation"
+            class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
           >
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
               Showing
               <span class="font-semibold text-gray-900 dark:text-white"
-                >1-10</span
+                >{{
+                  categoryStore.allCategories.length === 0
+                    ? 0
+                    : (categoryStore.currentPage - 1) * 10 + 1
+                }}-{{
+                  Math.min(
+                    categoryStore.currentPage * 10,
+                    categoryStore.allCategories.length
+                  )
+                }}</span
               >
               of
-              <span class="font-semibold text-gray-900 dark:text-white"
-                >1000</span
-              >
+              <span class="font-semibold text-gray-900 dark:text-white">{{
+                categoryStore.allCategories.length
+              }}</span>
             </span>
+
             <ul class="inline-flex items-stretch -space-x-px">
+              <!-- Previous Page Button -->
               <li>
                 <a
+                  @click.prevent="
+                    categoryStore.goToPage(categoryStore.currentPage - 1)
+                  "
+                  :disabled="categoryStore.currentPage === 1"
                   href="#"
                   class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
@@ -406,7 +520,7 @@
                     class="w-5 h-5"
                     aria-hidden="true"
                     fill="currentColor"
-                    viewbox="0 0 20 20"
+                    viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -417,44 +531,33 @@
                   </svg>
                 </a>
               </li>
-              <li>
+
+              <!-- Page Numbers -->
+              <li v-for="page in categoryStore.totalPages" :key="page">
                 <a
+                  @click.prevent="categoryStore.goToPage(page)"
+                  :class="{
+                    'text-primary-600 bg-primary-50':
+                      page === categoryStore.currentPage,
+                    'text-gray-500 bg-white':
+                      page !== categoryStore.currentPage,
+                  }"
                   href="#"
-                  class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >1</a
+                  class="flex items-center justify-center text-sm py-2 px-3 leading-tight border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
+                  {{ page }}
+                </a>
               </li>
+
+              <!-- Next Page Button -->
               <li>
                 <a
-                  href="#"
-                  class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >2</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  aria-current="page"
-                  class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                  >3</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >...</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >100</a
-                >
-              </li>
-              <li>
-                <a
+                  @click.prevent="
+                    categoryStore.goToPage(categoryStore.currentPage + 1)
+                  "
+                  :disabled="
+                    categoryStore.currentPage === categoryStore.totalPages
+                  "
                   href="#"
                   class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
@@ -463,12 +566,12 @@
                     class="w-5 h-5"
                     aria-hidden="true"
                     fill="currentColor"
-                    viewbox="0 0 20 20"
+                    viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       fill-rule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                       clip-rule="evenodd"
                     />
                   </svg>
@@ -668,6 +771,74 @@
       </div>
     </div>
   </div>
+  <div
+    v-show="showMultipleDeleteModal"
+    tabindex="-1"
+    aria-hidden="true"
+    class="overflow-y-auto overflow-x-hidden fixed fixed-modal top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
+  >
+    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+      <!-- Modal content -->
+      <div
+        class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+      >
+        <button
+          @click="showMultipleDeleteModal = false"
+          type="button"
+          class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          data-modal-toggle="deleteModal"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+        <svg
+          class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <p class="mb-4 text-gray-500 dark:text-gray-300">
+          Are you sure you want to delete selected items?
+        </p>
+        <div class="flex justify-center items-center space-x-4">
+          <button
+            @click="showMultipleDeleteModal = false"
+            data-modal-toggle="deleteModal"
+            type="button"
+            class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+          >
+            No, cancel
+          </button>
+          <button
+            @click="confirmMultipleDelete"
+            type="submit"
+            class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900"
+          >
+            Yes, I'm sure
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- <DeleteModal
     v-show="modals.deleteModal"
     v-model="modals.deleteModal"
@@ -681,6 +852,8 @@
 </template>
 <script setup>
 import { ref, onMounted, watch } from "vue";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 import { useCategoryStore } from "../stores/category.js";
 import { formatDate, getStatusClass, getStatusText } from "../utils.js";
 // import DeleteModal from "./DeleteModal.vue";
@@ -690,9 +863,45 @@ const form = ref({
 });
 const showModal = ref(false);
 const showDeleteModal = ref(false);
+const showMultipleDeleteModal = ref(false);
 const selectedCategoryId = ref(null);
 const showDeleteAlert = ref(null);
 const activeIndex = ref(-1);
+const statusIndex = ref(-1);
+const isVisible = ref(false);
+const isActionVisible = ref(false);
+const activeChecked = ref(false);
+const inactiveChecked = ref(false);
+const all = ref(false);
+
+const handleCheckboxClick = (checkboxId) => {
+  if (checkboxId == 1) {
+    activeChecked.value = !activeChecked.value;
+    inactiveChecked.value = false;
+    all.value = false;
+    categoryStore.handleSearchStatus(1);
+  } else if (checkboxId == 0) {
+    inactiveChecked.value = !inactiveChecked.value;
+    activeChecked.value = false;
+    all.value = false;
+    categoryStore.handleSearchStatus(0);
+  } else if (checkboxId == 3) {
+    all.value = !all.value;
+    activeChecked.value = false;
+    inactiveChecked.value = false;
+    categoryStore.handleSearchStatus(3);
+  }
+};
+
+const toggleVisibility = () => {
+  isVisible.value = !isVisible.value;
+  isActionVisible.value = false;
+};
+
+const toggleActionVisibility = () => {
+  isActionVisible.value = !isActionVisible.value;
+  isVisible.value = false;
+};
 
 // const modals = ref({
 //   deleteModal: false,
@@ -709,6 +918,26 @@ const modals = ref({
   category: {},
 });
 
+const selectedCategories = ref([]);
+
+const openMultipleDeleteModal = () => {
+  if (selectedCategories.value.length === 0) {
+    toast.warning("Please select at least one category to delete!", {
+      theme: "dark",
+    });
+    showMultipleDeleteModal.value = false;
+  } else {
+    showMultipleDeleteModal.value = true;
+    confirmMultipleDelete;
+  }
+};
+
+const confirmMultipleDelete = async () => {
+  showMultipleDeleteModal.value = false;
+  await categoryStore.deleteMultipleCategory(selectedCategories.value);
+  isActionVisible.value = false;
+};
+
 const handleEditClick = (category) => {
   modals.value.editModal = true;
   activeIndex.value = -1;
@@ -720,6 +949,14 @@ const openToggle = (index) => {
     activeIndex.value = -1;
   } else {
     activeIndex.value = index;
+  }
+};
+
+const status = (index) => {
+  if (statusIndex.value === index) {
+    statusIndex.value = -1;
+  } else {
+    statusIndex.value = index;
   }
 };
 
@@ -743,19 +980,20 @@ watch(
       modals.value.editModal = false;
       categoryStore.closeModal = false;
       try {
-        await categoryStore.fetchAllCategory();        
+        await categoryStore.fetchAllCategory();
         categoryStore.formErrors = {};
-        form.value = { name: "" };       
-        setTimeout(() => {
-          categoryStore.addSuccess = false;
-          categoryStore.editSuccess = false;
-        }, 3000);
+        form.value = { name: "" };
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
     }
   }
 );
+
+const updateStatus = (categoryId, newVal) => {
+  categoryStore.updateStatus(categoryId, newVal);
+  statusIndex.value = -1;
+};
 
 const openDeleteModal = (categoryId) => {
   selectedCategoryId.value = categoryId;

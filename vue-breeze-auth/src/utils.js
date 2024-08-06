@@ -1,5 +1,4 @@
 // utils.js
-
 import { format } from "date-fns";
 
 export const formatDate = (date) => {
@@ -15,3 +14,4 @@ export const getStatusClass = (status) => {
 export const getStatusText = (status) => {
   return status === 1 ? "Active" : "Inactive";
 };
+

@@ -4,6 +4,8 @@ import { useAuthStore } from "../stores/auth";
 import Home from "../components/Home.vue";
 import Login from "../components/Login.vue";
 import Category from "../components/Category.vue";
+import NotFound from "../components/NotFound.vue";
+import Brand from "../components/Brand.vue";
 
 const routes = [
   {
@@ -22,7 +24,17 @@ const routes = [
     name: "Category",
     component: Category,
     meta: { requiresAuth: true },
-  }
+  },
+  {
+    path: "/brands",
+    name: "Brand",
+    component: Brand,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: NotFound,
+  },
 ];
 
 const router = createRouter({
@@ -32,6 +44,11 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
+
+  if (authStore.authUser === null) {
+    await authStore.getUser();
+  }
+
   if (to.meta.requiresAuth) {
     if (!authStore.isAuthenticated) {
       next({ name: "Login" });

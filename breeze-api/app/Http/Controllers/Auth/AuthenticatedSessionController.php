@@ -18,11 +18,10 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
         return response()->noContent();
     }
+
 
     /**
      * Destroy an authenticated session.

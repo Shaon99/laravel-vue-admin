@@ -1,11 +1,12 @@
 <?php
 
 return [
-    'paths' => ['api/*'],
+    'paths' => ['api/*', 'login', 'logout', 'broadcasting/*', 'sanctum/csrf-cookie'],
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['http://localhost:3000'], // Adjust to your Vue.js frontend origin
+    'allowed_origins' => ['*'],
+    'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
     'max_age' => 0,
-    'supports_credentials' => true, // Enable credentials support if needed
+    'supports_credentials' => true,
 ];

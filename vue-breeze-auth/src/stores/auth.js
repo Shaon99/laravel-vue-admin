@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    authUser: JSON.parse(localStorage.getItem("authUser")) || null,
+    authUser: null,
     isLoading: false,
     isButtonLoading: false,
     formErrors: {},
@@ -28,11 +28,9 @@ export const useAuthStore = defineStore("auth", {
         await this.getToken();
         const response = await axios.get("/api/user");
         this.authUser = response.data;
-        localStorage.setItem("authUser", JSON.stringify(this.authUser));
       } catch (error) {
         console.error("Error fetching user data:", error);
         this.authUser = null;
-        localStorage.removeItem("authUser");
       } finally {
         this.isLoading = false;
       }
@@ -42,7 +40,7 @@ export const useAuthStore = defineStore("auth", {
       this.isButtonLoading = true;
       try {
         await this.getToken();
-        const response = await axios.post("/login", {
+        await axios.post("/login", {
           email: data.email,
           password: data.password,
         });
@@ -62,7 +60,6 @@ export const useAuthStore = defineStore("auth", {
       try {
         await axios.post("/logout");
         this.authUser = null;
-        localStorage.removeItem("authUser");
         this.router.push("/");
       } catch (error) {
         console.error("Error during logout:", error);
@@ -72,3 +69,4 @@ export const useAuthStore = defineStore("auth", {
     },
   },
 });
+
